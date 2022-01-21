@@ -1,4 +1,4 @@
-import {Row} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 import MyCard from "./MyCard";
 import axios from "axios";
 import React, {useEffect, useState} from "react";
@@ -16,12 +16,13 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="App">  <Row>
                 { albums.map((album) =>(
-                        <Row key={album.id}>
+                    <Col key={album.id} md={3}>
                            <MyCard title={album.title}/>
-                        </Row>
+                    </Col>
                 ))}
+    </Row>
     </div>
   );
 }
