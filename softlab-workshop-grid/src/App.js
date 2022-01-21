@@ -16,9 +16,9 @@ function App() {
 
 
   return (
-    <div className="App">  <Row>
+    <div className="App">  <Row className="m-5">
                 { albums.map((album) =>(
-                    <Col key={album.id} md={3}>
+                    <Col key={album.id} md={3} sm={6}>
                            <MyCard title={album.title}/>
                     </Col>
                 ))}
