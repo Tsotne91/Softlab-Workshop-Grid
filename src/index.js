@@ -5,7 +5,8 @@ import App from './App';
 
 ReactDOM.render(
         <>
-          <App />
+            <h5 className="text-center">საუკეთესო გალერეა მსოფლიოში</h5>
+            <App/>
         </>,
   document.getElementById('root')
 );
