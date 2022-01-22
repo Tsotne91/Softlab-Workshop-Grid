@@ -25,9 +25,11 @@ function App() {
                       <MyCard title={album.title}
                               albumId={album.id}
                               userId={album.userId}
-                              onClick={()=>setModalShow(true)} //not working
+                              onClick={() => setModalShow(true)}
                       />
-                      <GridModal onHide={() => setModalShow(false)}/>
+                      <GridModal
+                          show={modalShow}
+                          onHide={() => setModalShow(false)}/>
                   </Col>
               ))}
           </Row>

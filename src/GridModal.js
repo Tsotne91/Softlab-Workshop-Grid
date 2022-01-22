@@ -1,6 +1,6 @@
 import React  from "react";
 import Modal from 'react-bootstrap/Modal';
-import {Button, Col, Container, Row} from "react-bootstrap";
+import {Button, Col, Row} from "react-bootstrap";
 
 export default function GridModal(props){
 
@@ -12,7 +12,6 @@ export default function GridModal(props){
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body className="show-grid">
-                <Container>
                     <Row>
                         <Col xs={12} md={8}>
                             .col-xs-12 .col-md-8
@@ -33,7 +32,6 @@ export default function GridModal(props){
                             .col-xs-6 .col-md-4
                         </Col>
                     </Row>
-                </Container>
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={props.onHide}>Close</Button>
