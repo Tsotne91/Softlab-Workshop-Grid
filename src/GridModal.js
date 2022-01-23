@@ -1,8 +1,19 @@
-import React  from "react";
+import React, {useEffect, useState} from "react";
 import Modal from 'react-bootstrap/Modal';
 import {Button, Col, Row} from "react-bootstrap";
+import axios from "axios";
 
-export default function GridModal(props){
+export default function GridModal(props) {
+    const [photos, setPhotos] = useState([]);
+
+    useEffect(() => {
+        async function getPhotos() {
+            const response = await axios.get('https://jsonplaceholder.typicode.com/photos');
+            setPhotos(response.data);
+        }
+
+        getPhotos().catch(console.error);
+    }, [])
 
     return (
         <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
@@ -12,26 +23,22 @@ export default function GridModal(props){
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body className="show-grid">
-                    <Row>
-                        <Col xs={12} md={8}>
-                            .col-xs-12 .col-md-8
+                <Row>
+                    {photos.map((photo) => (
+                        <Col key={photo.id} md={3} className="my-2">
+                            {
+                                <img src={photo.url} alt="photo"/>
+                                // props.albumId
+                            }
                         </Col>
-                        <Col xs={6} md={4}>
-                            .col-xs-6 .col-md-4
-                        </Col>
-                    </Row>
+                    ))}
 
-                    <Row>
-                        <Col xs={6} md={4}>
-                            .col-xs-6 .col-md-4
-                        </Col>
-                        <Col xs={6} md={4}>
-                            .col-xs-6 .col-md-4
-                        </Col>
-                        <Col xs={6} md={4}>
-                            .col-xs-6 .col-md-4
-                        </Col>
-                    </Row>
+                    {/*<Col  md={2} className="bg-info mx-1 border border-primary">*/}
+                    {/*    .col-md-3*/}
+                    {/*</Col>*/}
+                    }
+                </Row>
+
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={props.onHide}>Close</Button>
@@ -39,5 +46,4 @@ export default function GridModal(props){
 
         </Modal>
     )
-
 }

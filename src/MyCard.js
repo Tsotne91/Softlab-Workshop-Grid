@@ -1,7 +1,6 @@
 import React from "react";
 import Card from 'react-bootstrap/Card';
 
-
 export default function MyCard({title, albumId, userId, onClick}) {
 
     return <Card className="h-100 bg-info fs-4" role="button" onClick={onClick}>

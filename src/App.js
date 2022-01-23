@@ -7,6 +7,7 @@ import GridModal from './GridModal'
 function App() {
     const [albums, setAlbums] = useState([]);
     const [modalShow, setModalShow] = useState(false);
+    const [albumIdForModal, setAlbumIdForModal] = useState([]);
 
     useEffect(()=>{
         async function getAlbums() {
@@ -16,7 +17,6 @@ function App() {
         getAlbums().catch(console.error);
     }, [])
 
-
   return (
       <div className="App">
           <Row className="m-5">
@@ -25,14 +25,19 @@ function App() {
                       <MyCard title={album.title}
                               albumId={album.id}
                               userId={album.userId}
-                              onClick={() => setModalShow(true)}
+                              onClick={() => {
+                                  setModalShow(true);
+                                  setAlbumIdForModal(album.id);
+                              }
+                              }
                       />
-                      <GridModal
-                          show={modalShow}
-                          onHide={() => setModalShow(false)}/>
                   </Col>
-              ))}
+              ))} }
           </Row>
+          <GridModal
+              albumId={albumIdForModal}
+              show={modalShow}
+              onHide={() => setModalShow(false)}/>
       </div>
   );
 }
