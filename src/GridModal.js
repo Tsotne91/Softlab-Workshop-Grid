@@ -6,9 +6,10 @@ import axios from "axios";
 export default function GridModal(props) {
     const [photos, setPhotos] = useState([]);
 
+
     useEffect(() => {
         async function getPhotos() {
-            const response = await axios.get('https://jsonplaceholder.typicode.com/photos');
+            const response = await axios.get(`https://jsonplaceholder.typicode.com/photos?albumId=${props.albumId}`);
             setPhotos(response.data);
         }
 
@@ -16,7 +17,7 @@ export default function GridModal(props) {
     }, [])
 
     return (
-        <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
+        <Modal {...props} aria-labelledby="contained-modal-title-vcenter" size="lg">
             <Modal.Header closeButton>
                 <Modal.Title>
                     Using Grid in Modal
@@ -25,25 +26,25 @@ export default function GridModal(props) {
             <Modal.Body className="show-grid">
                 <Row>
                     {photos.map((photo) => (
-                        <Col key={photo.id} md={3} className="my-2">
+                        <Col key={photo.id} md={3} className="my-2 border border-1">
                             {
-                                <img src={photo.url} alt="photo"/>
-                                // props.albumId
+                                // photo.filter(() => (
+                                //     props.albumId === photo.albumId ?
+                                <div><img src={
+                                    photo.url
+                                } alt="thumbnail" width="180"/>
+                                    {photo.title}
+                                </div>
                             }
+
                         </Col>
                     ))}
-
-                    {/*<Col  md={2} className="bg-info mx-1 border border-primary">*/}
-                    {/*    .col-md-3*/}
-                    {/*</Col>*/}
-                    }
                 </Row>
 
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={props.onHide}>Close</Button>
             </Modal.Footer>
-
         </Modal>
     )
 }

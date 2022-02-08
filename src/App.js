@@ -28,11 +28,10 @@ function App() {
                               onClick={() => {
                                   setModalShow(true);
                                   setAlbumIdForModal(album.id);
-                              }
-                              }
+                              }}
                       />
                   </Col>
-              ))} }
+              ))}
           </Row>
           <GridModal
               albumId={albumIdForModal}
