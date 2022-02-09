@@ -3,20 +3,19 @@ import MyCard from "./MyCard";
 import axios from "axios";
 import React, {useEffect, useState} from "react";
 import GridModal from './GridModal'
-import PhotoModal from "./PhotoModal";
+
 
 function App() {
     const [albums, setAlbums] = useState([]);
     const [albumIdForModal, setAlbumIdForModal] = useState([]);
     const [modalShow, setModalShow] = useState(false);
-    const [photoModalShow, setPhotoModalShow] = useState(false);
+
 
     useEffect(() => {
         async function getAlbums() {
             const response = await axios.get('https://jsonplaceholder.typicode.com/albums');
             setAlbums(response.data);
         }
-
         getAlbums().catch(console.error);
     }, [])
 
@@ -41,11 +40,6 @@ function App() {
               albumId={albumIdForModal}
               show={modalShow}
               onHide={() => setModalShow(false)}/>
-          <PhotoModal
-              showPhotoModal={() => setPhotoModalShow(true)}
-              show={photoModalShow}
-              onHide={() => setPhotoModalShow(false)}
-          />
       </div>
   );
 }
