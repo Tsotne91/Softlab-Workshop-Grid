@@ -1,20 +1,18 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import Modal from 'react-bootstrap/Modal';
 import {Button, Col, Row} from "react-bootstrap";
 import axios from "axios";
 
+
 export default function GridModal(props) {
     const [photos, setPhotos] = useState([]);
 
-
-    useEffect(() => {
         async function getPhotos() {
             const response = await axios.get(`https://jsonplaceholder.typicode.com/photos?albumId=${props.albumId}`);
             setPhotos(response.data);
         }
-
         getPhotos().catch(console.error);
-    }, [])
+
 
     return (
         <Modal {...props} aria-labelledby="contained-modal-title-vcenter" size="lg">
@@ -28,17 +26,17 @@ export default function GridModal(props) {
                     {photos.map((photo) => (
                         <Col key={photo.id} md={3} className="my-2 border border-1">
                             {
-                                // photo.filter(() => (
-                                //     props.albumId === photo.albumId ?
-                                <div><img src={
-                                    photo.url
-                                } alt="thumbnail" width="180"/>
+                                <div role="button"><img src={photo.url}
+                                                        alt="thumbnail"
+                                                        width="180"
+                                                        onClick={() => props.showPhotoModal()} /*this is not working */
+                                />
                                     {photo.title}
                                 </div>
                             }
-
                         </Col>
                     ))}
+
                 </Row>
 
             </Modal.Body>
