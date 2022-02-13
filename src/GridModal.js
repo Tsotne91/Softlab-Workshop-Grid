@@ -8,6 +8,7 @@ import PhotoModal from "./PhotoModal";
 export default function GridModal(props) {
     const [photos, setPhotos] = useState([]);
     const [photoModalShow, setPhotoModalShow] = useState(false);
+    const [photoUrl, setPhotoUrl] = useState("");
 
     useEffect(() => {
         async function getPhotos() {
@@ -32,11 +33,14 @@ export default function GridModal(props) {
                         {photos.map((photo) => (
                             <Col key={photo.id} md={3} className="my-2 border border-1">
                                 {
-                                    <div role="button"><img src={photo.url}
-                                                            alt="thumbnail"
-                                                            width="180"
-                                                            onClick={() => setPhotoModalShow(true)} /*this is not working */
-                                    />
+                                    <div role="button" onClick={() => {
+                                        setPhotoModalShow(true);
+                                        setPhotoUrl(photo.url);
+                                    }}>
+                                        <img src={photo.url}
+                                             alt="thumbnail"
+                                             width="180"
+                                        />
                                         {photo.title}
                                     </div>
                                 }
@@ -52,6 +56,7 @@ export default function GridModal(props) {
                 showPhotoModal={() => setPhotoModalShow(true)}
                 show={photoModalShow}
                 onHide={() => setPhotoModalShow(false)}
+                photoUrl={photoUrl}
             />
         </>
     )

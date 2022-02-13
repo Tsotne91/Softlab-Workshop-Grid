@@ -10,7 +10,7 @@ export default function PhotoModal(props) {
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <img src={props.src} alt="album photo"/>
+            <img src={props.photoUrl} alt="album photo"/>
             <Modal.Footer>
                 <Button onClick={props.onHide}>Close</Button>
             </Modal.Footer>
